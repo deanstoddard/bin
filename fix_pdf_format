@@ -1,0 +1,15 @@
+#!/bin/bash
+
+list=`ls | grep '^[0-9]'`
+
+for file in $list; do
+   date=`echo $file | awk -F'_' '{print $1}'`
+   company=`echo $file | awk -F'_' '{print $2}'`
+   postfix=`echo $file | awk -F'_' '{print $3}'`
+
+
+   #echo "mv $file ${company}_${date}_${postfix}"
+   mv $file ${company}_${date}_${postfix}
+
+
+done

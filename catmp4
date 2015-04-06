@@ -1,0 +1,16 @@
+#!/bin/bash -x
+
+name="20140926-Elises_Movie"
+
+export COMMAND="MP4Box"
+
+filelist=$( ls *.mp4 )
+
+
+for file in $filelist; do
+	COMMAND="${COMMAND} -cat $file"
+done
+
+COMMAND="${COMMAND} -new ${name}.mp4"
+
+eval ${COMMAND}

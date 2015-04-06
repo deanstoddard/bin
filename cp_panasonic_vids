@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+if [ ! -d /home/dean/Desktop/video.tmp ]; then
+   echo "Creating tmp directory"
+   mkdir /home/dean/Desktop/video.tmp 
+fi
+   
+
+
+ls *.MOD | while read line; do
+   timestamp=`ls -l ${line} | awk '{print $6 "_" $7}' | tr ':' '-'` 
+   cp $line /home/dean/Desktop/video.tmp/${timestamp}.MOD
+done

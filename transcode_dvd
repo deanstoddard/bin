@@ -1,0 +1,9 @@
+#!/bin/bash
+
+chapter=1
+
+while [ $chapter -le 29 ]; do
+   transcode -i "/media/My Book/dvd_backups/WHITE_STRPES/VIDEO_TS" -x dvd \
+      -T 1,${chapter},1 -a 0 -y raw -m ${chapter}.mp3 
+   chapter=$((chapter+1))
+done

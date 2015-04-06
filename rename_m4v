@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+ls -1 | while read file; do
+   # Replace spaces with underscores
+   space_removed=`echo "$file" | tr ' ' '_'`
+   
+   #Remove postfix
+   file_type_removed=`echo $space_removed | cut -d'.' -f1`
+   #echo $file_type_removed
+   
+   new_string=""
+   IFS='_'
+   for word in $file_type_removed; do
+       first_char=`echo -n ${word:0:1} | tr [:lower:] [:upper:]`
+       remaining_chars=`echo -n ${word:1} | tr [:upper:] [:lower:]`
+   
+       #echo "${first_char}${remaining_chars}"
+    
+       new_string="${new_string}_${first_char}${remaining_chars}"
+   done
+   IFS=' '
+
+   new_name="${new_string:1}.m4v"
+  
+   if [ "$file" != "$new_name" ]; then 
+      mv "$file" $new_name
+   fi
+done

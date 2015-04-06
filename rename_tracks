@@ -1,0 +1,17 @@
+#!/bin/bash
+
+ls > /tmp/tracks
+
+while read track; do
+
+   track_name=`id3v2 -l $track | grep TIT2 | awk -F':' '{print $2}' | sed -e 's/^ //'`
+   track_num=`id3v2 -l $track | grep TRCK | awk -F':' '{print $2}' | sed -e 's/^ //'`
+
+   if [ $track_num -lt 10 ]; then
+      track_num="0${track_num}"
+   fi
+
+   mv $track "${track_num}-${track_name}.mp3"
+
+done < /tmp/tracks
+   

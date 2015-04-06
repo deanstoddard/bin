@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo mount -t cifs //192.168.0.1/USB_Storage -o rw,username=guest,password= /mnt
+
+rsync -avz --delete /media/dean/media/Videos/ /mnt/Videos/
+rsync -avz --delete /media/dean/media/Music/ /mnt/Music/
+rsync -avz --delete /media/dean/media/Pictures/ /mnt/Pictures/

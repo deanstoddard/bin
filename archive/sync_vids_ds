@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rsync -avz --delete /home/dean/Videos/ dean@diskstation:/volume1/video
+#rsync -avz --delete /home/dean/Videos/ dean@diskstation:/volume1/video
+#rsync -avz /media/Elements/Videos/ dean@diskstation:/volume1/video
+ssh dean@diskstation -n "synoindex -R video"

@@ -1,0 +1,10 @@
+#!/bin/bash -x
+
+title=3
+
+dvd_device=/dev/sr0
+disc_title=`lsdvd ${dvd_device} 2> /dev/null | grep Disc  | awk '{print $3}'`
+end_track=${num_tracks}
+
+
+HandBrakeCLI --title=${title} --preset="High Profile" -i ${dvd_device} -o "/home/dean/Videos.tmp/${disc_title}.m4v"

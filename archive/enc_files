@@ -1,0 +1,8 @@
+#!/bin/bash
+
+passphrase=1938Munich
+
+cat /tmp/doclist | while read line; do
+   openssl aes-256-cbc -a -salt -k 1938Munich -in $line -out ${line}.enc   
+done
+

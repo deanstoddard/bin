@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ls -1 | while read photo; do
+
+   tags=$( jhead $photo | grep Keyword | awk -F':' '{print $2}' )
+
+   echo "$photo:  $tags"
+
+done
+
+

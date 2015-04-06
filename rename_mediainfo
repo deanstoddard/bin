@@ -1,0 +1,10 @@
+#/bin/bash
+
+
+ls -1 | while read line; do
+  
+    newname=`mediainfo $line | grep 'Encoded date' | head -1 | awk '{print $5 "_" $6}' \
+        | tr -d ':' | tr -d '-'`
+
+    mv ${line} ${newname}.MOV
+done

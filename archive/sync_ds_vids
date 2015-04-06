@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#rsync -avz /media/Elements/Videos/ admin@diskstation:/volume1/video
+#rsync -avz --delete /media/Elements/Videos/ admin@diskstation:/volume1/video
+rsync -avz admin@diskstation:/volume1/video/ /home/dean/Videos

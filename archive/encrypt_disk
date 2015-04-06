@@ -1,0 +1,6 @@
+# Encryption modules must be loaded
+sudo modprobe dm-crypt
+sudo cryptsetup --verbose --verify-passphrase luksFormat /dev/sdh1
+sudo cryptsetup luksOpen /dev/sdh1 sdh1
+sudo mkfs.ext3 /dev/mapper sdh1
+sudo cryptsetup luksClose sdh1

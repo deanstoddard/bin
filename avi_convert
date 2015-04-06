@@ -1,0 +1,18 @@
+#!/bin/bash 
+
+# Change file names to timestamps
+
+for file in `ls *.AVI`; do
+   #timestamp=`ls -l $file | cut -d' ' -f6,7 | tr -d '-' | \
+   #   tr ' ' '_' | tr -d ':'`
+
+   prefix=`echo ${file} | cut -d"." -f1`
+
+   # Get timestamp from THM file
+   timestamp=`jhead ${prefix}.THM | grep Date | awk -F" " '{print $3"_"$4}' | tr -d ':'`
+
+
+   #echo "mv $file ${timestamp}.AVI ${prefix}"
+   mv $file ${timestamp}.AVI
+   HandBrakeCLI --preset="High Profile" -i ${timestamp}.AVI -o "${timestamp}.m4v"
+done

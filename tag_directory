@@ -1,0 +1,39 @@
+#!/bin/bash 
+
+clear
+thisWindow=`xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)" | awk '{ print $5}'`
+xdotool set_window --name "Tagging" $thisWindow
+
+num_photos=$( ls -1 | wc -l )
+counter=1
+
+
+for photo in `ls -1`; do
+ 
+   tags=$( jhead $photo | grep Comment | awk -F':' '{print $2}' \
+      | sed -e 's/^[ \t]*//')
+   
+   display -thumbnail 800x600 $photo &
+   disown
+   clear
+
+   # Use xautomation tools to get the focus back
+   sleep 3
+   xdotool search --name Tagging windowactivate 
+
+   echo "$counter of $num_photos"
+   counter=$(( counter + 1 ))
+   echo "$photo currently has tag(s):"
+   echo "$tags"
+   echo -n "Change? (y or n): "
+   read answer
+
+   if [ "${answer}" = "y" ]; then
+      echo "Set new tags, separated by comma"
+      read comment
+   
+      jhead -cl "$comment" $photo
+   fi
+
+   pkill display > /dev/null 2>&1
+done 

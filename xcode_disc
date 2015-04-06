@@ -1,0 +1,26 @@
+#!/bin/bash 
+
+beg_track=1
+#end_track=19
+
+dvd_device=/dev/sr0
+#dvd_device=/media/Elements/dvd/shameless_season_1_disc_2.iso
+#dvd_device=/home/dean/looney_tunes_golden_v5_d4.iso
+
+
+
+
+
+num_tracks=`lsdvd ${dvd_device} 2> /dev/null | grep Title | tail -1 | awk '{print $2}' | tr -d ','`
+disc_title=`lsdvd ${dvd_device} 2> /dev/null | grep Disc  | awk '{print $3}'`
+end_track=${num_tracks}
+
+echo $num_tracks
+echo $disc_title
+
+num=${beg_track}
+while [ $num -le $end_track ]; do
+   #HandBrakeCLI --title=${num} --preset="High Profile" -i ${dvd_device} -o "/home/dean/Videos.tmp/${disc_title}-${num}.m4v"
+   HandBrakeCLI --title=${num} --preset="High Profile" -i ${dvd_device} -o "/home/dean/${disc_title}-${num}.m4v"
+   num=$(( num + 1))
+done

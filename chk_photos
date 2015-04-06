@@ -1,0 +1,19 @@
+#!/bin/bash
+
+basedir=/home/dean/Pictures
+
+find ${basedir} -iname "*.jpg" | grep -v '2001/10/13'> /tmp/jpg_list.txt
+#find ${basedir} -iname "*.jpg" > /tmp/jpg_list.txt
+#find ${basedir} -iname "*.jpg" -path /home/dean/Pictures/2001/10/13 -prune -o > /tmp/jpg_list.txt
+
+while read jpg; do
+
+   storage_loc=`dirname "$jpg" | awk -F'/' '{print $5 $6 $7}'`
+   filename=`basename "$jpg" | awk -F'_' '{print $1}'`
+  
+   if [ "$storage_loc" != "$filename" ]; then
+      echo $jpg
+   fi
+
+
+done < /tmp/jpg_list.txt

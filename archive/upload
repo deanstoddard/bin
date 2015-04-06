@@ -1,0 +1,7 @@
+
+
+google picasa create --title "19990316"
+google picasa post --title "19990315" "/home/dean/Pictures/1999/03/15/*.JPG"
+
+google picasa create --title "19990329"
+google picasa post --title "19990329" "/home/dean/Pictures/1999/03/29/*.JPG"

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rsync -avz /home/dean/media/Videos pi@rasbpi:/media/extstorage/
+rsync -avz /home/dean/media/Music pi@rasbpi:/media/extstorage/
+rsync -avz /home/dean/media/Pictures pi@rasbpi:/media/extstorage/

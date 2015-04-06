@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for file in `ls *.avi`; do 
+   name=`echo $file | cut -d. -f1`
+   HandBrakeCLI --preset="High Profile" -i ${file} -o "${name}.m4v"
+done
+
+for file in `ls *.AVI`; do 
+   name=`echo $file | cut -d. -f1`
+   HandBrakeCLI --preset="High Profile" -i ${file} -o "${name}.m4v"
+done

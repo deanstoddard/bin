@@ -1,0 +1,19 @@
+#!/bin/bash 
+
+#mediainfo MVI_2574.MOV  | grep -i 'Encoded date' | head -1 | awk -F' ' '{print $5 "_" $6}' | tr -d '-' | tr -d ':'
+
+filelist=$( ls *.mov | tr ' ' '_' )
+
+
+for file in $filelist; do
+
+	echo $file
+	
+	#timestamp=$( mediainfo "${file}"  | grep -i 'Encoded date' | head -1 | awk -F' ' '{print $5 "_" $6}' | tr -d '-' | tr -d ':' )
+
+    #mv $file ${timestamp}.MOV 
+    #echo "mv \"${file}\" \"${timestamp}.MOV\""
+
+
+	
+done

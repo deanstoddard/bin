@@ -1,0 +1,3 @@
+#!/bin/bash
+
+HandBrakeCLI -i /media/Elements/dvd/1995_Orange_Bowl.iso -o ~/Movies/movie.mp4  -e x264 -b 2000 -t 1 -a 1,1 -E faac,copy:ac3 -B 160,160 -6 dpl2,auto -R Auto,Auto -D 0.0,0.0 -f mp4 --detelecine --decomb --loose-anamorphic -m -x b-adapt=2:rc-lookahead=50

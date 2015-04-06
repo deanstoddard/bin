@@ -1,0 +1,38 @@
+#!/bin/bash 
+
+tmpfile=/tmp/fileout.$$
+tmpfile2=/tmp/fileout2.$$
+tmpfile3=/tmp/fileout3.$$
+basedir="/home/dean/Music"
+
+ls $basedir > ${tmpfile}
+
+while read artist; do
+   first_chars=$( echo $artist | cut -c1-4 | tr '[:upper:]' '[:lower:]' ) 
+
+   if [ "${first_chars}" = "the " ]; then
+      tmp_artist=$( echo $artist | cut -d " " -f 2- )
+      tmp_artist="${tmp_artist}, The"
+      echo "${tmp_artist}#${artist}" >> $tmpfile2 
+   else
+      echo "${artist}#${artist}" >> $tmpfile2
+   fi
+done < ${tmpfile} 
+
+sort -t# -d $tmpfile2 >> $tmpfile3
+
+IFS=$'\n'
+
+
+while read line; do 
+  sort_name=$( echo $line | cut -d '#' -f1 )
+  artist_name=$( echo $line | cut -d '#' -f2 )
+  artist_albums=$( ls "${basedir}/${artist_name}" )
+    
+  for album in $artist_albums; do
+     printf "%-40s%60s\n" "${sort_name}:" $album
+  done 
+  #echo "$sort_name $artist_albums"
+done < ${tmpfile3}
+
+#rm $tmpfile $tmpfile2

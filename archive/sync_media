@@ -1,0 +1,12 @@
+#/bin/bash
+
+echo "Syncing Music"
+rsync -av --size-only /home/dean/Music/ "/media/Media/Music"
+
+echo "Syncing Photos"
+rsync -av --size-only /home/dean/Pictures/ "/media/Media/Pictures"
+
+echo "Syncing Videos"
+rsync -av --delete /media/BACKUPS/Videos/ \
+   --exclude "*.m4v" --size-only \
+   /media/Media/Videos

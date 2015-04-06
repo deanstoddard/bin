@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+for movie in $( ls -1 *.m4v); do
+	movie_name=$( mediainfo ${movie} | grep 'Movie name' \
+		| awk -F':' '{print $2}' | tr -d ' ' ) 
+
+
+    if [[ "${movie}" != "${movie_name}" ]]; then
+		echo "${movie}:${movie_name}"
+	fi	
+
+done

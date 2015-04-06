@@ -1,0 +1,10 @@
+#!/bin/bash 
+
+vboxmanage list vms | cut -d"\"" -f2 > /tmp/vbox.list
+
+while read line; do
+   echo "${line}"
+
+   vboxmanage showvminfo "${line}" | grep MAC | cut -d":" -f3
+
+done < /tmp/vbox.list

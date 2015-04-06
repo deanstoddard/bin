@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /home/dean/Documents/python3/notebook 
+nohup /usr/bin/ipython3 notebook --profile=nb3server &

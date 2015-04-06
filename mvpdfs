@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mv *.PDF /home/dean/backup/PDFs
+mv *.pdf /home/dean/backup/PDFs

@@ -1,0 +1,9 @@
+#!/bin/bash -x
+
+name=$1
+
+mencoder dvd://1 -dvd-device /dev/dvd  -alang English    \
+   -oac copy   \
+   -ovc x264 -vf pp=de,crop=0:0:0:0,scale=720:-2    \
+   -x264encopts qp=26:pass=1 \
+    -o "/home/dean/${1}.avi"

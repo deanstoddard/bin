@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ls -1 *.mkv
+
+num=`ls -1 *.mkv | wc -l`
+count=1
+
+for file in `ls -1 *.mkv`; do
+   basename=`echo $file | cut -d'.' -f1`
+   input_file=$file
+   output_file="${basename}.m4v"
+
+   echo "File ${count} of ${num}: $input_file -> $output_file"
+   HandBrakeCLI --preset="High Profile" \
+      -i ${input_file} \
+      -o ${output_file} \
+      >> ~/logs/handbrakecli.log 2>&1
+
+   rm ${input_file} 
+   count=$(( count + 1 )) 
+done

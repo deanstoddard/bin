@@ -1,0 +1,9 @@
+#!/bin/bash -x
+
+output_file=$1
+
+files=`ls -1tr *.mp4`
+
+for i in $files; do
+	MP4Box -cat $i $output_file
+done

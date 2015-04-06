@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+import sys
+import random
+
+input = sys.argv[1]
+
+print(input)
+number = int(input.split('d')[0])
+die = int(input.split('d')[1].split('+')[0])
+adder = int(input.split('d')[1].split('+')[1])
+
+sum = 0
+
+for roll in range(number):
+   result = random.randint(1, die)
+   print('Roll %d: %d' % (roll + 1, result))
+   sum = sum + result
+
+
+print('Total: %d' % (sum + adder))

@@ -1,0 +1,9 @@
+#!/bin/bash 
+
+rasbpi="192.168.0.22"
+
+rsync -avz /home/dean/media/Videos pi@${rasbpi}:/media/extstorage/
+rsync -avz /home/dean/media/Music pi@${rasbpi}:/media/extstorage/
+rsync -avz /home/dean/media/Pictures pi@${rasbpi}:/media/extstorage/
+
+ssh pi@${rasbpi} sudo /etc/init.d/minidlna force-reload

@@ -1,0 +1,14 @@
+#/bin/bash
+
+# Not using mediainfo to get time from metadata because time is
+# UTC.  Get data from filename
+
+
+filelist=`ls *.mp4 | tr '\n' '#'`
+
+IFS="#"
+for file in $filelist; do
+   filebase=`echo $file | cut -d'.' -f1-3` 
+   newfilebase=`echo $filebase | tr ' ' '_' | tr -d '.' | tr -d '-'`   
+   mv "${filebase}.mp4" "${newfilebase}.mp4" 
+done

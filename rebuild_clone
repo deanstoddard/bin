@@ -1,0 +1,15 @@
+#!/bin/bash
+
+vm=$1
+
+# Check if vm is running
+vboxmanage list runningvms | grep -q vm
+status=$?
+
+if [ $status = 0 ]; then
+   vboxmanage controlvm "${vm}" poweroff
+fi
+
+# Get mac address of existing box
+
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+find . -name "01*" -exec id3v2 -l {} \; | egrep 'TPE|TALB' | awk -F':' '{print $2}'
+

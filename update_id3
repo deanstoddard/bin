@@ -1,0 +1,42 @@
+#!/bin/bash -x
+
+artist="They Might Be Giants"
+album="Here Comes Science"
+year=
+#genre=0 #Blues
+#genre=7 #Hip-Hop
+genre=12 #Other
+#genre=13 #Pop
+#genre=14 #R&B
+#genre=15 #Rap
+#genre=16 #Reggae
+#genre=17 #Rock
+#genre=20 #Alternative
+#genre=24 #Soundtrack
+#genre=29 #Jazz+Funk
+#genre=32 #Classical
+#genre=66 #New Wave
+#genre=78 #Rock & Roll
+#genre=79 #Hard Rock
+#genre=80 #Folk
+#genre=81 #Folk rock
+#genre=88 #Celtic
+#genre=91 #Gothic Rock
+#genre=121 #Punk
+#genre=255 #
+
+file_list=/tmp/file_list
+ls -1 > $file_list
+
+
+while read file; do
+    Track=`echo $file | cut -d"-" -f 1`
+    Song_Title=`echo $file | cut -d"-" -f 2 | sed -e 's/^ //'`
+
+    id3v2 --artist "$artist" --album "$album" --track $Track \
+      --song "$Song_Title" \
+      "$file"
+
+      #--song "$Song_Title" --year $year --genre  $genre \
+
+done < /$file_list

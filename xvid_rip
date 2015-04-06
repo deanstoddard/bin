@@ -1,0 +1,6 @@
+unlink frameno.avi 2> /dev/null
+mencoder dvd://6 -dvd-device /dev/dvd  -oac copy -alang English  -ovc frameno -o frameno.avi
+mencoder dvd://6 -dvd-device /dev/dvd    -info srcform="DVD ripped by acidrip.sf.net" -oac copy -ovc xvid -xvidencopts bitrate=4761:chroma_opt:vhq=4:bvhq=1:quant_type=mpeg:pass=1 -vf pp=de,crop=0:0:0:0,scale=720:-2    -o "/dev/null"
+mencoder dvd://6 -dvd-device /dev/dvd    -info srcform="DVD ripped by acidrip.sf.net" -oac copy -ovc xvid -xvidencopts bitrate=4761:chroma_opt:vhq=4:bvhq=1:quant_type=mpeg:pass=2 -vf pp=de,crop=0:0:0:0,scale=720:-2    -o "/home/dean/barbie_of_swan_lake.avi"
+unlink frameno.avi 2> /dev/null
+unlink divx2pass.log  2> /dev/null

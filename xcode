@@ -1,0 +1,9 @@
+#!/bin/bash
+
+filelist=`ls *.mp4`
+
+#ls *.mp4 | while read line; do
+for file in $filelist; do
+   filebase=`echo $file | cut -d'.' -f1`
+   ffmpeg -i ${filebase}.mp4 -ar 44200 ${filebase}.m4v
+done

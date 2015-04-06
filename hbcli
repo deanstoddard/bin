@@ -1,0 +1,17 @@
+#!/bin/bash
+
+basedir=/media/Elements
+
+while read line; do
+
+   isoname=`basename $line`
+   shortname=`echo $isoname | cut -d'.' -f1`
+   m4vname="${shortname}.m4v"
+   #echo $isoname
+   #echo $shortname
+
+   HandBrakeCLI --main-feature --preset="High Profile" -b 2000\
+      -i $line \
+      -o ${basedir}/m4v/${m4vname}
+
+done < ~/conf/m4vlist

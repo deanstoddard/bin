@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+
+import gspread
+from os import listdir
+from datetime import date, timedelta
+
+today = str(date.today())
+yesterday = str(date.today() - timedelta(1))
+
+
+# Get the list of movies from two directories
+r_movie_dir = '/home/dean/media/Videos/Movies'
+r_movies = [filename for filename in listdir(r_movie_dir) if filename[-4:] == '.m4v']
+
+
+kids_movie_dir = '/home/dean/Videos/Kids_Shows/Movies'
+kids_movies = [filename for filename in listdir(kids_movie_dir) if filename[-4:] == '.m4v']
+
+movies = sorted(r_movies + kids_movies)
+#print movies
+
+gc = gspread.login('dean@stoddards-kc.com','!833Sultanpet')
+spreadsheet = gc.open('Movie List')
+old_worksheet = spreadsheet.worksheet(yesterday)
+new_worksheet = spreadsheet.add_worksheet(title = today, rows = len(movies), cols = 1)
+
+cell_range = 'A1:A' + str(len(movies))
+cell_list = new_worksheet.range(cell_range)
+
+for i, value in enumerate(movies):
+	cell_list[i].value = value
+
+new_worksheet.update_cells(cell_list)
+
+gc.del_worksheet(old_worksheet)
+
+

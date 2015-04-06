@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+. /home/dean/conf/tmp_rename.conf
+
+export num="${start}"
+
+ls *.JPG | while read line; do
+   mv $line SCANNED_${num}.JPG
+   num=$((num + 1))
+   echo "start=${num}" > /home/dean/conf/tmp_rename.conf
+done
+

@@ -1,0 +1,60 @@
+#!/bin/bash  -x
+
+while read line; do 
+
+   year=`echo $line | cut -c1-4`
+   monthno=`echo $line | cut -c5-6`
+   dayno=`echo $line | cut -c5-6`
+
+   case "$monthno" in 
+      01)
+         month="January";
+      ;;
+      02)
+         month="February";
+      ;;
+      03)
+         month="March";
+      ;;
+      04)
+         month="April";
+      ;;
+      05)
+         month="May";
+      ;;
+      06)
+         month="June";
+      ;;
+      07)
+         month="July";
+      ;;
+      08)
+         month="August";
+      ;;
+      09)
+         month="September";
+      ;;
+      10)
+         month="October";
+      ;;
+      11)
+         month="November";
+      ;;
+      12)
+         month="December";
+      ;;
+   esac
+
+   
+   title="${month} ${dayno}, ${year}"
+
+
+   google picasa create --title "${title}" \
+      /home/dean/Pictures/${year}/${monthno}/${dayno}/*.JPG 
+   #echo "google picasa create --title \"${title}\" "
+   #   /home/dean/Pictures/${year}/${monthno}/${dayno}/*.JPG 
+   #echo  "/home/dean/Pictures/${year}/${monthno}/${dayno}/*.JPG"
+
+done < /home/dean/conf/missing_dirs
+
+

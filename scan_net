@@ -1,0 +1,13 @@
+#!/bin/bash
+
+i=1
+while [[ i -le 255 ]]; do
+	ping -q -c 1 -t 1 192.168.0.${i} > /dev/null
+    status=$?
+
+    if [[ ${status} -eq 0 ]]; then
+		echo "192.168.0.${i} responds"
+	fi
+	
+	i=$(( i + 1 ))
+done

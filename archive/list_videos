@@ -1,0 +1,15 @@
+#!/bin/bash
+
+for line in `ls -1 "/media/My Book/dvd_backups"`; do 
+#for line in `ls -1 "/media/New Volume/dvd_backups"`; do 
+
+   full_video=`find /home/dean/Videos -name "$line*"`
+
+   if [ "X${full_video}" != "X" ]; then
+      video=`basename  "${full_video}"`
+      printf "%-40s%-40s\n" $line $video
+   else 
+      printf "%-40s\n" $line 
+   fi
+
+done

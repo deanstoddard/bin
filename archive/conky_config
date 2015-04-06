@@ -1,0 +1,11 @@
+#!/bin/bash
+
+/home/dean/bin/conky-colors \
+  --lang=english \
+  --ubuntu \
+  --clock=default \
+  --weather=66213 \
+  --weatherplus \
+  --unit=F \
+  --calendar \
+  --todo

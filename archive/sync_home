@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rsync -avz --delete --exclude-from '/home/dean/conf/sync_home_exclude' \
+   /home/dean "/media/My Book"

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Modified with keywords instead of comments
+
+ls -1 | while read photo; do
+   jhead $photo | grep Keyword | awk -F':' '{print $2}' | \
+      tr ',' '\n' | sed -e 's/^[ \t]*//' 
+done | sort -u
+
+

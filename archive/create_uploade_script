@@ -1,0 +1,62 @@
+#!/bin/bash 
+
+find /home/dean/Pictures -type d > /tmp/directorylist
+
+while read line; do 
+
+   length=`echo $line | wc -c`
+
+   if [ "$length" -ne 31 ]; then
+      continue
+   fi
+
+   year=`echo $line | awk -F'/' '{print $5}'`
+   monthno=`echo $line | awk -F'/' '{print $6}'`
+   dayno=`echo $line | awk -F'/' '{print $7}'`
+
+   case "$monthno" in 
+      01)
+         month="January";
+      ;;
+      02)
+         month="February";
+      ;;
+      03)
+         month="March";
+      ;;
+      04)
+         month="April";
+      ;;
+      05)
+         month="May";
+      ;;
+      06)
+         month="June";
+      ;;
+      07)
+         month="July";
+      ;;
+      08)
+         month="August";
+      ;;
+      09)
+         month="September";
+      ;;
+      10)
+         month="October";
+      ;;
+      11)
+         month="November";
+      ;;
+      12)
+         month="December";
+      ;;
+   esac
+    
+   echo "google picasa create --title \"${month} ${dayno}, ${year}\" "
+   echo "google picasa post --title \"${month} ${dayno}, ${year}\" ${line}/*.JPG"
+   echo "google picasa post --title \"${month} ${dayno}, ${year}\" ${line}/*.jpg"
+ 
+done < /tmp/directorylist
+
+

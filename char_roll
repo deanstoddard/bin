@@ -1,0 +1,29 @@
+#!/usr/bin/python
+
+import sys
+import random
+
+number = 4
+die = 6
+
+def die_roll():
+   number = 4
+   die = 6
+
+   rolls = []
+   for roll in range(number):
+      result = random.randint(1, die)
+      #print('Roll %d: %d' % (roll + 1, result))
+      rolls.append(result)
+
+   #print(rolls)
+   total = sum(rolls) - min(rolls) 
+   return total
+
+attributes=['Str', 'Con', 'Dex', 'Int', 'Wid', 'Cha']
+
+for attribute in attributes:
+   output = die_roll()
+   print('%s: %d' % (attribute, output))
+
+#print('Total (3 top scores): %d' % (output))

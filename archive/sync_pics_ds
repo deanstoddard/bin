@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rsync -avz --delete \
+   /home/dean/Pictures/ dean@diskstation:/volume1/photo

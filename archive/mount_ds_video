@@ -1,0 +1,1 @@
+sudo mount.cifs "\\\\diskstation\\video" /diskstation/video -o user=admin,pass=1938Munich,uid=1000,gid=users,rw,suid

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+ls *PDF | awk -F'.' '{print $1}' | xargs -I string mv string.PDF string.pdf

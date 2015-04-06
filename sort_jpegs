@@ -1,0 +1,40 @@
+#!/bin/bash  
+
+base_dir=/home/dean/Pictures
+#logfile=/home/dean/logs/sort_jpeg.log
+
+#file_list=`ls | egrep 'jpg|JPG'`
+
+ls | egrep 'jpg|JPG' | while read file; do
+  
+   timestamp=$( identify -verbose "${file}" | grep -e exif:DateTime: -e exif:SubSecTime: \
+	| cut -d':' -f 3-  | sed -e 's/^[ \t]*//' | tr -d ':' | tr ' ' '_' \
+	| tr '\n' '_' | sed -e 's/_$//' )   
+
+   year=${timestamp:0:4}
+   #echo $year
+   monthno=${timestamp:4:2}
+   #echo $monthno
+
+   if [ ! -e ${base_dir}/${year}/${monthno} ]; then
+      mkdir -p "${base_dir}/${year}/${monthno}" 
+   fi 
+
+   #newfile="${base_dir}/${year}/${monthno}/${year}${monthno}${day}_${time}.JPG"
+   newfile="${base_dir}/${year}/${monthno}/${timestamp}.JPG"
+   #echo $newfile
+
+
+   if [ -e ${newfile} ]; then
+      echo "${file} -> ${newfile} aleady exists!!!"
+      continue
+   fi
+
+   cp "${file}" "${newfile}"   
+   jhead -ft "${newfile}" 
+
+   #checksum=`md5sum "$file"`
+   #echo "${file} ${newfile} $checksum" >> $logfile 
+
+   #rm "${file}"
+done

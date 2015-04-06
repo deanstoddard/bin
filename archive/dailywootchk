@@ -1,0 +1,5 @@
+#!/bin/bash
+
+WootItemDescription=`/usr/bin/curl www.woot.com | grep itemDescription | awk -F"'" '{print $4}'`
+
+echo $WootItemDescription

@@ -1,0 +1,14 @@
+#!/bin/bash 
+df -h | grep -q encfs; status=$?
+if [ $status != 0 ]; then
+   echo '!905Tsushima' | \
+      encfs -S /home/dean/Dropbox/.Documents_enc /home/dean/.Documents
+fi
+
+
+df -h | grep -q encfs; status=$?
+if [ $status = 0 ]; then
+   /usr/bin/rsync -avz /home/dean/Documents/ /home/dean/.Documents
+fi
+
+

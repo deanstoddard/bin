@@ -1,0 +1,6 @@
+#!/bin/bash
+
+video=$1
+
+#mediainfo $1 | grep 'Recorded date'
+mediainfo $1 | grep 'Mastered date'

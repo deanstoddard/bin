@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rsync -av -n --delete /home/dean/Videos/ \
+   --exclude "*.m4v" \
+   /media/WDTV/Videos

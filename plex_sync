@@ -1,0 +1,15 @@
+#!/bin/bash
+
+remote_server=192.168.0.32
+
+echo "Synching Movies"
+rsync -avz --modify-window 5 /home/dean/media/Videos/ \
+	${remote_server}:/home/dean/media/Videos/
+
+echo "Synching Music"
+rsync -avz --modify-window 5 /home/dean/media/Music/ \
+	${remote_server}:/home/dean/media/Music/
+
+echo "Synching Photos"
+rsync -avz --modify-window 5 /home/dean/media/Pictures/ \
+	${remote_server}:/home/dean/media/Pictures/

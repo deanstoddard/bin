@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /home/dean/Documents/python/notebook 
+nohup /home/dean/media/anaconda/bin/ipython notebook --profile=nbserver &
+#nohup /home/dean/Documents/Canopy/User/bin/ipython notebook --profile=nbserver &

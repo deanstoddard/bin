@@ -1,0 +1,4 @@
+#/bin/bash
+
+rsync -avzn  --modify-window=5 /home/dean/Videos/ \
+   mint14:/media/dean/Elements/Videos

@@ -1,0 +1,9 @@
+#!/bin/bash -x
+
+movie=$1
+
+longest_track=`lsdvd "/media/My\ Book/dvd_backups/${movie}/" \
+   | grep "Longest track" \
+   | awk -F':' '{print $2}'`
+
+echo $longest_track

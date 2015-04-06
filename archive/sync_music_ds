@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#rsync -avz --delete /home/dean/Music/ dean@diskstation:/volume1/music
+#rsync -avz --delete /home/dean/Music/ dean@diskstation:/volume1/music
+rsync -avz /home/dean/Music/ dean@diskstation:/volume1/music
+#ssh dean@diskstation -n "synoindex -R music"

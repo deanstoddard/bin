@@ -1,0 +1,54 @@
+#!/bin/bash
+
+path=$( pwd )
+
+monthno=$( basename $path )
+temppath=$( dirname $path )
+year=$( basename $temppath )
+
+case $monthno in
+   01 )
+      month=Jan ;;
+   02 ) 
+      month=Feb ;; 
+   03 )
+      month=Mar ;;
+   04 )
+      month=Apr ;;
+   05 )
+      month=May ;;
+   06 )
+      month=Jun ;;
+   07 )
+      month=Jul ;;
+   08 )
+      month=Aug ;;
+   09 )
+      month=Sep ;;
+   10 )
+      month=Oct ;;
+   11 )
+      month=Nov ;;
+   12 )
+      month=Dec ;;
+    * )
+      echo "Incorrect format for directory"
+      exit ;;
+esac
+
+dirname="${month}, ${year}"
+
+google picasa create --title "${dirname}"
+
+ls -1 | while read photo; do
+         
+   #Get tag information
+   # Right now only has one tag
+
+   tag_list=$( jhead $photo | grep Keywords | awk -F':' '{print $2}' )
+   #echo "$photo $tag_list"
+
+   google picasa post --title "${dirname}" --tags "${tag_list}" ${photo}
+
+done
+    

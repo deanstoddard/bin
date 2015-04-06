@@ -1,0 +1,11 @@
+#!/bin/bash
+
+files=`ls -1 *.MOV`
+
+for file in $files; do
+
+   datestamp=`exiftool $file | grep '^Create Date' | head -1 | awk '{print $4 "_" $5}' | tr -d ':'`
+   
+   mv  ${file} ${datestamp}.MOV
+
+done

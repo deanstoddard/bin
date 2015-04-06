@@ -1,0 +1,5 @@
+#!/bin/bash
+
+title=$1
+
+google picasa list --title ${title} | cut -d',' -f1

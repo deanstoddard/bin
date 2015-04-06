@@ -1,0 +1,14 @@
+#!/bin/bash
+
+base_directory=/home/dean/Pictures/unsorted
+
+file_list=`ls ${base_directory}/*.JPG`
+
+for file in $file_list; do
+
+   datestamp=`jhead $file | grep 'File date' | awk '{print $4 "." $5}'` 
+  
+   jhead -ts${datestamp} $file
+
+
+done

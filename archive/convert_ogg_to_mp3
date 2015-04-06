@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for name in *.ogg; do 
+	ffmpeg -i "$name" -ab 128k -map_metadata 0:s:0 "${name/.ogg/.mp3}"
+done
+

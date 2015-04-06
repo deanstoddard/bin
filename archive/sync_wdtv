@@ -1,0 +1,9 @@
+#/bin/bash
+
+echo "Syncing Videos"
+rsync -avz  /home/dean/Videos/ \
+   --exclude "*.m4v" \
+   /media/WDTV/Videos
+
+echo "Syncing Photos"
+rsync -av /home/dean/Pictures/ "/media/WDTV/Pictures"

@@ -1,0 +1,3 @@
+sdiff /tmp/google.out /tmp/pictures.out | \
+   grep -e '<' -e '|' -e '>' | wc -l 
+   #grep -e '<' -e '|' -e '>' | less 

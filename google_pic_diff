@@ -1,0 +1,24 @@
+#!/bin/bash 
+
+# Generate the two lists, one local, one at google
+#google_list=`mktemp`
+#local_list=`mktemp`
+
+find /media/dean/Elements/Pictures -iname "*.jpg" > ${local_list}
+google picasa list > ${google_list}
+
+local_list_file=/tmp/tmp.S4gKDEHYQe
+google_list_file=/tmp/tmp.vizgtFSUTd
+
+local_pics=`cat ${local_list_file} | xargs -I string basename string`
+#google_list=`cat ${google_list_file}`
+
+for pic in $local_pics; do
+   grep -q $pic ${google_list_file}; status=$?
+   
+   if [ "${status}" -ne "0" ]; then
+      full_pic_path=`grep $pic ${local_list_file}`
+      echo "$pic not found on google: ${full_pic_path}"
+   fi
+
+done

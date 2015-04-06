@@ -1,0 +1,10 @@
+#!/bin/bash 
+
+export num=231
+
+ls *.JPG | while read line; do
+   #mv $line SCAN0${num}.JPG
+   echo "mv $line SCAN0${num}.JPG"
+   num=$((num + 1))
+done
+

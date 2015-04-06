@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+# Change file names to timestamps
+
+for file in `ls *.MOV`; do
+   timestamp=`ls -l $file | cut -d' ' -f6,7 | tr -d '-' | \
+      tr ' ' '_' | tr -d ':'`
+
+   mv $file ${timestamp}.MOV
+   echo "Converting $file"
+   HandBrakeCLI --preset="High Profile" -i ${timestamp}.MOV -o "${timestamp}.m4v" > /dev/null 2>&1
+done

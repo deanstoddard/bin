@@ -1,0 +1,25 @@
+#!/bin/bash
+
+working_dir=$( pwd )
+album=$( echo $working_dir | rev | cut -d'/' -f1 | rev )
+artist=$( echo $working_dir | rev | cut -d'/' -f2 | rev )
+
+echo "PERFORMER \"${artist}\"" > album.cue
+echo "TITLE \"${album}\"" >> album.cue
+echo 'FILE "album.mp3"' >> album.cue
+
+export IFS=$(echo -en "\n\b")
+counter=0
+
+for song in $( cat songlist ); do
+    song_time=$( echo $song | cut -d' ' -f1  )
+    song_name=$( echo $song | cut -d' ' -f2- )
+
+    counter=$(( counter + 1 ))
+    echo "  TRACK ${counter} AUDIO" >> album.cue
+    echo "    TITLE \"${song_name}\"" >> album.cue
+    echo "    INDEX 01 ${song_time}:00" >> album.cue
+
+done
+
+mp3splt -a -c album.cue album.mp3

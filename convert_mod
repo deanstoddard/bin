@@ -1,0 +1,11 @@
+#!/bin/bash 
+
+# Change file names to timestamps
+
+for file in `ls *.MOD`; do
+
+   base=`echo $file | awk -F'.' '{print $1}'`
+   #echo $base
+
+   HandBrakeCLI --preset="High Profile" -i ${base}.MOD -o "${base}.m4v"
+done

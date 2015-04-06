@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ls  *.m4v | while read line; do
+    new_name=`echo $line | tr '\ ' '_'`  
+    mv "${line}" "${new_name}"
+done
+
+

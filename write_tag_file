@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#Initialize tag file
+echo "" > ./.tags
+
+ls -1 *.JPG | while read line; do
+
+   tags=$( jhead $line | grep Comment | awk -F':' '{print $2}' )
+   echo "${line} - $tags" >> ./.tags
+done

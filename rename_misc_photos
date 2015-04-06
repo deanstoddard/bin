@@ -1,0 +1,11 @@
+#!/bin/bash
+
+starting_num=47
+prefix="misc"
+
+num=$starting_num
+ls -1 | grep -i jpg | while read file; do
+   mv $file "${prefix}_${num}.jpg"
+
+   num=$(( num + 1 )) 
+done

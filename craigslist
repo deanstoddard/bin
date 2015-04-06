@@ -1,0 +1,22 @@
+
+echo "Toys and Games" > /tmp/craigslist.txt
+curl "http://kansascity.craigslist.org/search/tag?query=lego&srchType=A&minAsk=&maxAsk=" \
+| egrep 'Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Nov|Dec' \
+>> /tmp/craigslist.out
+
+echo "" > /tmp/craiglist.txt
+
+while read line; do
+   adddate=`echo $line | cut -d'-' -f1`
+   addlink=`echo $line | cut -d'"' -f2| tr -d ' '`
+   adddesc=`echo $line | cut -d'>' -f2 | cut -d'-' -f1`
+
+   printf "%-8s%-50s%-53s\n" "${adddate}" "${adddesc}" "${addlink}" >> /tmp/craigslist.txt
+   #echo "${adddate} ${adddesc} ${addlink}"
+done < /tmp/craigslist.out
+
+#curl "http://kansascity.craigslist.org/search/bab?query=lego&srchType=A&minAsk=&maxAsk=" >>
+
+/bin/cat /tmp/craigslist.txt | /usr/bin/mailx deanstoddard@yahoo.com
+/bin/cat /tmp/craigslist.txt | /usr/bin/mailx ronald.stoddard@umb.com
+

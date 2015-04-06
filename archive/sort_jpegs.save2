@@ -1,0 +1,55 @@
+#!/bin/bash
+
+base_dir=/home/dean/Pictures
+logfile=/home/dean/logs/sort_jpeg.log
+
+#file_list=`ls ${base_directory}/unsorted/*.JPG`
+#file_list=`find ${base_dir}/Pictures.working -iname '*.jpg'`
+file_list=`ls | egrep 'jpg|JPG'`
+
+#echo $file_list
+
+for file in $file_list; do
+  
+   
+   year=`jhead ${file} | grep 'Date/Time' \
+      | awk '{print $3}' | awk -F':' '{print $1}'`
+   monthno=`jhead ${file} | grep 'Date/Time' \
+      | awk '{print $3}' | awk -F':' '{print $2}'`
+   day=`jhead ${file} | grep 'Date/Time' \
+      | awk '{print $3}' | awk -F':' '{print $3}'`
+
+   time=`jhead ${file} | grep 'Date/Time' \
+      | awk '{print $4}' | tr -d ':'`
+   hour=`jhead ${file} | grep 'Date/Time' \
+      | awk '{print $4}' | awk -F":" '{print $1}'`
+   minute=`jhead ${file} | grep 'Date/Time' \
+      | awk '{print $4}' | awk -F":" '{print $2}'`
+   second=`jhead ${file} | grep 'Date/Time' \
+      | awk '{print $4}' | awk -F":" '{print $3}'`
+
+
+   if [ ! -e ${base_dir}/${year}/${monthno}/${day} ]; then
+      #echo "${base_dir}/${year}/${month} doesn't exist"
+      mkdir -p ${base_dir}/${year}/${monthno}/${day} 
+   fi 
+
+   newfile="${base_dir}/${year}/${monthno}/${day}/${year}${monthno}${day}_${time}.JPG"
+
+
+   if [ -e ${newfile} ]; then
+      echo "${file} -> ${newfile} aleady exists!!!"
+      continue
+   fi
+
+   cp ${file} ${newfile}   
+   jhead -ft ${newfile} 
+
+
+   checksum=`md5sum $file`
+   echo "${file} ${newfile} $checksum" >> $logfile 
+
+   rm ${file}
+
+
+done

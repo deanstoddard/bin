@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#/usr/bin/google picasa list | awk -F',' '{print $1}' \
+#    | sort > /tmp/google.out
+
+/usr/bin/google picasa list | sort > /tmp/google_raw.out
+/bin/cat /tmp/google_raw.out | awk -F',' '{print $1}' \
+    | sort > /tmp/google.out
+
+find /home/dean/Pictures/ -iname "*.jpg" | \
+    xargs -I string basename string | sort \
+    > /tmp/pictures.out

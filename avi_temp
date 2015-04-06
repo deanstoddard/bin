@@ -1,0 +1,11 @@
+#!/bin/bash 
+
+# Change file names to timestamps
+
+for file in `ls *.AVI`; do
+
+   name=`echo ${file} | cut -d"." -f1`
+
+   #HandBrakeCLI --preset="High Profile" -i ${name}.AVI -o "${name}.m4v"
+   ffmpeg -i ${name}.AVI -ar 44200 ${name}.mp4 
+done

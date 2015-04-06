@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ls > /tmp/listing
+
+while read track; do
+
+   id3v2 -s "$track"
+   id3v2 -d "$track"
+
+done < /tmp/listing

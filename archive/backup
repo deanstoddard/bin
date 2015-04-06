@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#rsync -av /home/dean "/media/disk"
+rsync -av /home/dean/bin "/media/Elements/nightly_backup"
+rsync -av /home/dean/Music "/media/nightly_backup"
+rsync -av /home/dean/Pictures "/media/nightly_backup"
+rsync -av /home/dean/public_html "/media/nightly_backup"
+rsync -av /home/dean/Software "/media/nightly_backup"
+rsync -av /home/dean/Videos "/media/nightly_backup"
+#rsync -av /home/dean/.VirtualBox "/media/nightly_backup"
+#cp /home/dean/.VirtualBox /media/nightly_backup/VirtualBox

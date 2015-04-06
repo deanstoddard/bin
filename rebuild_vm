@@ -1,0 +1,30 @@
+#!/bin/bash
+
+clone=$1
+
+if [ "${clone}" = "CentOS" ]; then
+   echo "Can't clone original, exiting."
+   exit 1
+elif [ "${clone}" = "Clone1" ]; then
+   MAC=08002706CB7C
+elif [ "${clone}" = "Clone2" ]; then
+   MAC=080027503862
+else
+   echo "Don't recognize machine, exiting"
+   exit 1
+fi
+
+echo $MAC
+
+# Get MAC from clone 
+#MAC=`vboxmanage showvminfo "Clone1" | grep "NIC 1" | \
+#   awk -F' ' '{print $4}' | tr -d ','`
+
+# Delete clone
+vboxmanage unregistervm ${clone} --delete
+
+# Create new clone
+vboxmanage clonevm "CentOS" --name "${clone}" --register
+
+# Set MAC address
+vboxmanage modifyvm Clone1 --macaddress1 ${MAC}

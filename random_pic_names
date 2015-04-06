@@ -1,0 +1,11 @@
+#!/bin/bash
+
+files=`ls -1 | tr '\n' '#' | grep -i -e 'jpg' -e 'JPG'`
+
+IFS='#'
+for file in $files; do
+    random_name=`mktemp -u | cut -d'.' -f2`
+
+    mv "$file" ${random_name}.jpg
+
+done

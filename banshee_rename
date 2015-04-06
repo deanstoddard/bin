@@ -1,0 +1,5 @@
+ls -1 | while read old_name; do 
+   new_name=`echo $old_name | sed -e 's/. / - /'`
+
+   mv "${old_name}" "${new_name}"
+ done

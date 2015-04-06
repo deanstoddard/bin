@@ -1,0 +1,12 @@
+#!/bin/bash
+
+sudo mount -t cifs //192.168.0.1/T_Drive -o rw,username=guest,password /mnt
+
+sudo rsync -avz --delete --modify-window 5 \
+	/home/dean/media/Videos/ /mnt/Videos/
+sudo rsync -avz --delete --modify-window 5 \
+	/home/dean/media/Music/ /mnt/Music/
+sudo rsync -avz --delete --modify-window 5 \
+	/home/dean/media/Pictures/ /mnt/Pictures/
+
+sudo umount /mnt

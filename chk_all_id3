@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ls -1 /home/dean/Music > /tmp/artist_list
+
+while read artist; do
+   ls -1 "/home/dean/Music/${artist}" > /tmp/album_list
+
+   while read album; do
+      cd "/home/dean/Music/${artist}/${album}"
+      #echo -n "${artist}-${album}:  "
+      name=`id3v2 -l 01*  | grep TPE1 | awk -F':' '{print $2}'`
+
+
+      printf "%30s%30s\n" ${album} ${name}
+
+   done < /tmp/album_list
+
+done < /tmp/artist_list
+
